@@ -1,0 +1,10 @@
+{
+  "trashAssetsBeforeRuns": false,
+  "env": {
+    "login_url": "https://www.flierinc.com/mypage",
+    "login_id": "[your login id]",
+    "login_password": "[your login password]",
+    "start_index": 1,
+    "last_index": 9000
+  }
+}
