@@ -5,7 +5,6 @@ describe('download flier pdf', () => {
 
     it('download flier pdf', () => {
         for (let i = Cypress.env('start_index'); i < Cypress.env('last_index'); i++) {
-            cy.log('No:' + i.toString());
             download(i);
         }
     });
@@ -29,6 +28,7 @@ function login() {
     cy.get('.center > .btn-fl-submit').click();
 
     cy.wait(1000);
+    cy.log('Login OK.');
 }
 
 function download(i) {
@@ -37,7 +37,10 @@ function download(i) {
 
     cy.url()
         .then((value) => {
-            if (value.indexOf('summary') === -1) return; // Not found contents
+            if (value.indexOf('summary') === -1) {
+                cy.log(`content no.${i} file not found`);
+                return;
+            }
 
             cy.get('.btn-fl-pdf')
                 .click(); // move view pdf
@@ -49,7 +52,6 @@ function download(i) {
                         cy.title()
                             .then((value) => {
                                 const title = value.substring(0, value.lastIndexOf(' - PDF Viewer')) + '.pdf';
-
                                 cy.get('script')
                                     .last()
                                     .then((value) => {
@@ -60,6 +62,7 @@ function download(i) {
                                             .then((response) => {
                                                 const filePath = 'cypress/downloads/' + title;
                                                 cy.writeFile(filePath, response.body, 'binary');
+                                                cy.log(`content no.${i} download:` + title);
                                             });
                                     });
                             });
