@@ -1,5 +1,5 @@
 {
-  "trashAssetsBeforeRuns": false,
+  "video": false,
   "env": {
     "login_url": "https://www.flierinc.com/mypage",
     "login_id": "[your login id]",
