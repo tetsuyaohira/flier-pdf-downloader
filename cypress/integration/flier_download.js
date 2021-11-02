@@ -4,7 +4,7 @@ describe('download flier pdf', () => {
     });
 
     it('download flier pdf', () => {
-        for (let i = Cypress.env('start_index'); i < Cypress.env('last_index'); i++) {
+        for (let i = Cypress.env('start_index'); i <= Cypress.env('last_index'); i++) {
             download(i);
         }
     });
